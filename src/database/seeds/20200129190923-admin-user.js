@@ -1,11 +1,10 @@
-import bcrypt from 'bcryptjs';
+const bcrypt = require("bcryptjs");
 
-// eslint-disable-next-line no-undef
 module.exports = {
-  up: (queryInterface) => {
-    return queryInterface.bulkInsert(
+  up: QueryInterface => {
+    return QueryInterface.bulkInsert(
       "users",
-
+      [
         {
           name: "Distruidora FastFeet",
           email: "admin@fastfeet.com",
@@ -13,6 +12,8 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date()
         }
+      ],
+      {}
     );
   },
 
