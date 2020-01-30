@@ -1,8 +1,10 @@
-const bcrypt = require("bcryptjs");
+// eslint-disable-next-line no-undef
+const bcrypt = require('bcryptjs');
 
+// eslint-disable-next-line no-undef
 module.exports = {
-  up: QueryInterface => {
-    return QueryInterface.bulkInsert(
+  up: queryInterface => {
+    return queryInterface.bulkInsert(
       "users",
       [
         {
