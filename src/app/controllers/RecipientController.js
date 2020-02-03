@@ -57,8 +57,10 @@ class RecipientController{
       return res.status(400).json({ error: 'Falha nas validações' });
     }
 
-    const recipient = await Recipient.findByPk(req.recipientId);
+    const recipient = await Recipient.findByPk(req.body.id);
 
+    // eslint-disable-next-line no-undef
+    //console.log(recipient);
 
     const { id, nome, rua, numero, complemento, estado, cidade, cep } = await recipient.update(req.body);
 
@@ -90,26 +92,34 @@ class RecipientController{
   }
 
   async show(req, res){
-    const { id, nome, rua, numero, complemento, estado, cidade, cep } = await Recipient.findByPk(req.recipientId);
+    try{
+      const { id, nome, rua, numero, complemento, estado, cidade, cep } = await Recipient.findByPk(req.query.recipient);
 
-    return res.json({
-      id,
-      nome,
-      rua,
-      numero,
-      complemento,
-      estado,
-      cidade,
-      cep,
-    });
+      return res.json({
+        id,
+        nome,
+        rua,
+        numero,
+        complemento,
+        estado,
+        cidade,
+        cep,
+      });
+    }catch( err ){
+      return res.json({ message : err.message });
+    }
   }
 
   async destroy(req, res){
-    const recipient = await Recipient.findByPk(req.recipientId);
+    try{
+      const recipient = await Recipient.findByPk(req.query.recipient);
 
-    recipient.destroy();
+      recipient.destroy();
 
-    return res.json({ message : "Deletado com sucesso!"});
+      return res.json({ message : "Deletado com sucesso!"});
+    }catch( err ){
+      return res.json({ message : err.message });
+    }
   }
 }
 

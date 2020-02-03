@@ -19,13 +19,28 @@ routes.get('/fast', (req, res) => {
 /**Iniciar sessão**/
 routes.post('/sessions', SessionController.store);
 
-/**Middleware para validação de token de usuário**/
+/**Middleware para validação de token de usuário, para todas as rotas que estão a baixo dele**/
 routes.use(authMiddleware);
+
 /**Update Usuários**/
 routes.put('/users', UserControllers.update);
 
 /**Create Recipient**/
 routes.post('/recipients', RecipientController.store);
+
+/**Alter Recipient**/
+routes.put('/recipients', RecipientController.update);
+
+/**Get Recipient**/
+routes.get('/recipients', RecipientController.show);
+
+/**Delete Recipient**/
+routes.delete('/recipients', RecipientController.destroy);
+
+/**Get All Recipient**/
+routes.get('/recipientsAll', RecipientController.index);
+
+
 
 //pode utilizar tambem export default routes;
 //module.exports = routes;
