@@ -23,8 +23,8 @@ class Encomendas extends Model{
 
   static associate(models) {
     this.belongsTo(models.Recipient, { foreingKey: 'recipient_id', as: 'recipient' });
-    this.belongsTo(models.Entregadores, { foreingKey: 'deliveryman_id', as: 'entregadores' });
-    this.belongsTo(models.File, { foreingKey: 'signature_id', as: 'sinature' });
+    this.belongsTo(models.Entregadores, { foreingKey: 'deliveryman_id', as: 'deliveryman' });
+    this.belongsTo(models.File, { foreingKey: 'signature_id', as: 'signature' });
   }
 
 }
