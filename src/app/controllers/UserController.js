@@ -14,7 +14,7 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Falha nas validações 1' });
+      return res.status(400).json({ error: 'Fail in validations!' });
     }
 
     const userExists = await User.findOne({
@@ -24,7 +24,7 @@ class UserController {
     });
 
     if (userExists) {
-      return res.status(400).json({ error: 'Usuário já existe' });
+      return res.status(400).json({ error: 'User existing!' });
     }
 
     const { id, name, email } = await User.create(req.body);
@@ -55,7 +55,7 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Falha nas validações' });
+      return res.status(400).json({ error: 'Fail in validations!' });
     }
 
     const { email, oldPassword } = req.body;
@@ -72,12 +72,12 @@ class UserController {
       });
 
       if (userExists) {
-        return res.status(400).json({ error: 'Usuário já existe' });
+        return res.status(400).json({ error: 'User existing!' });
       }
     }
 
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
-      return res.status(401).json({ error: 'Senha, não confere' });
+      return res.status(401).json({ error: 'Password is wrong!' });
     }
 
     const { id, name } = await user.update(req.body);

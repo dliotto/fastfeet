@@ -12,7 +12,7 @@ class EntregadorController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Falha nas validações' });
+      return res.status(400).json({ error: 'Validations fail!' });
     }
 
     const userExists = await Entregador.findOne({
@@ -22,7 +22,7 @@ class EntregadorController {
     });
 
     if (userExists) {
-      return res.status(400).json({ error: 'Usuário já existe' });
+      return res.status(400).json({ error: 'Existing user!' });
     }
 
     const { id, name, email, avatar_id } = await Entregador.create(req.body);
@@ -42,7 +42,7 @@ class EntregadorController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Falha nas validações' });
+      return res.status(400).json({ error: 'Validations fail!' });
     }
 
     const entregador = await Entregador.findByPk( req.query.idEntregador );
@@ -106,7 +106,7 @@ class EntregadorController {
 
       entregador.destroy();
 
-      return res.json({ message : "Deletado com sucesso!"});
+      return res.json({ message : "Deleted with success!"});
     }catch( err ){
       return res.json({ message : err.message });
     }

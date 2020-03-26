@@ -59,7 +59,7 @@ class ProblemController {
 
       await Mail.sendMail({
         to: `${encomenda.deliveryman.name} <${encomenda.deliveryman.email}>`,
-        subject: 'Encomenda cancelada',
+        subject: 'Order canceled',
         template: 'cancelada',
         context: {
           entregador: encomenda.deliveryman.name,
@@ -67,7 +67,7 @@ class ProblemController {
         },
       });
 
-      return res.json({ message : "Cancelado com sucesso!", encomenda : encomenda });
+      return res.json({ message : "Canceled with success!", encomenda : encomenda });
   }
 
 }

@@ -19,7 +19,7 @@ class RecipientController{
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Falha nas validações' });
+      return res.status(400).json({ error: 'Validations fail!' });
     }
 
     const { id, nome, rua, numero, complemento, estado, cidade, cep } = await Recipient.create(req.body);
@@ -54,7 +54,7 @@ class RecipientController{
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Falha nas validações' });
+      return res.status(400).json({ error: 'Validations fail!' });
     }
 
     const recipient = await Recipient.findByPk(req.body.id);
@@ -116,7 +116,7 @@ class RecipientController{
 
       recipient.destroy();
 
-      return res.json({ message : "Deletado com sucesso!"});
+      return res.json({ message : "Deleted with success!"});
     }catch( err ){
       return res.json({ message : err.message });
     }

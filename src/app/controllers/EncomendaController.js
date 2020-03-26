@@ -38,7 +38,7 @@ class EncomendaController {
 
     await Mail.sendMail({
       to: `${entregador.name} <${entregador.email}>`,
-      subject: 'Encomenda cadastrada',
+      subject: 'Registered order',
       template: 'info',
       context: {
         entregador: entregador.name,
@@ -135,7 +135,7 @@ class EncomendaController {
 
       encomenda.destroy();
 
-      return res.json({ message : "Deletado com sucesso!"});
+      return res.json({ message : "Deleted with success!"});
     }catch( err ){
       return res.json({ message : err.message });
     }
