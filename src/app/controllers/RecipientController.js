@@ -4,7 +4,7 @@ import Recipient from '../models/Recipient';
 class RecipientController{
   async store(req, res) {
     const schema = Yup.object().shape({
-      nome: Yup.string().required(),
+      name: Yup.string().required(),
       rua: Yup.string()
         .required(),
       numero: Yup.number()
@@ -22,11 +22,11 @@ class RecipientController{
       return res.status(400).json({ error: 'Validations fail!' });
     }
 
-    const { id, nome, rua, numero, complemento, estado, cidade, cep } = await Recipient.create(req.body);
+    const { id, name, rua, numero, complemento, estado, cidade, cep } = await Recipient.create(req.body);
 
     return res.json({
       id,
-      nome,
+      name,
       rua,
       numero,
       complemento,
@@ -39,7 +39,7 @@ class RecipientController{
   async update(req, res) {
 
     const schema = Yup.object().shape({
-      nome: Yup.string().required(),
+      name: Yup.string().required(),
       rua: Yup.string()
         .required(),
       numero: Yup.number()
@@ -62,11 +62,11 @@ class RecipientController{
     // eslint-disable-next-line no-undef
     //console.log(recipient);
 
-    const { id, nome, rua, numero, complemento, estado, cidade, cep } = await recipient.update(req.body);
+    const { id, name, rua, numero, complemento, estado, cidade, cep } = await recipient.update(req.body);
 
     return res.json({
       id,
-      nome,
+      name,
       rua,
       numero,
       complemento,
@@ -77,27 +77,20 @@ class RecipientController{
   }
 
   async index(req, res){
-    const { id, nome, rua, numero, complemento, estado, cidade, cep } = await Recipient.findAll();
+    const recipients = await Recipient.findAll({where: {},});
 
-    return res.json({
-      id,
-      nome,
-      rua,
-      numero,
-      complemento,
-      estado,
-      cidade,
-      cep,
-    });
+    return res.json(
+      recipients
+    );
   }
 
   async show(req, res){
     try{
-      const { id, nome, rua, numero, complemento, estado, cidade, cep } = await Recipient.findByPk(req.query.recipient);
+      const { id, name, rua, numero, complemento, estado, cidade, cep } = await Recipient.findByPk(req.query.recipient);
 
       return res.json({
         id,
-        nome,
+        name,
         rua,
         numero,
         complemento,

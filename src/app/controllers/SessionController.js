@@ -7,7 +7,7 @@ import authConfig from '../../config/auth';
 class SessionController {
   // eslint-disable-next-line consistent-return
   async store(req, res){
-
+    console.log('ENTROU');
     const schema = Yup.object().shape({
       email: Yup.string()
         .email()
@@ -22,6 +22,9 @@ class SessionController {
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
+
+
+    console.log(user);
 
     if (!user) {
       return res.status(401).json({ error: 'User not found!' });

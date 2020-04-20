@@ -80,16 +80,16 @@ class EncomendaController {
     const { page = 1 } = req.query.page;
 
     const encomendas = await Encomenda.findAll({
-      where: { canceled_at : null },
+      where: {},
       order: ['created_at'],
-      attributes: ['product', 'start_date' ],
-      limit: 12,
-      offset: (page - 1) * 12,
+      attributes: ['product', 'start_date', 'canceled_at', 'signature_id', 'id', 'deliveryman_id', 'recipient_id' ],
+      limit: 20,
+      offset: (page - 1) * 20,
       include: [
         {
           model: Recipient,
           as: 'recipient',
-          attributes: ['nome'],
+          attributes: ['name', 'cidade', 'estado'],
         },
         {
           model: Entregador,
@@ -110,7 +110,7 @@ class EncomendaController {
           {
             model: Recipient,
             as: 'recipient',
-            attributes: ['nome'],
+            attributes: ['name'],
           },
           {
             model: Entregador,

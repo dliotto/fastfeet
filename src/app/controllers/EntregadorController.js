@@ -58,14 +58,15 @@ class EntregadorController {
   }
 
   async index(req, res) {
-    const { page = 1 } = req.query.page;
+    const page = req.query.page;
+    const email = req.query.email;
 
     const entregador = await Entregador.findAll({
-      where: { email: req.query.email },
+      where: email ? { email } : {},
       order: ['email'],
       attributes: ['id', 'name', 'email'],
-      limit: 2,
-      offset: (page - 1) * 2,
+      //limit: 2,
+      //offset: (page - 1) * 2,
       include: [
         {
           model: File,

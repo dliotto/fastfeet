@@ -20,7 +20,7 @@ export default async (req, res, next) => {
     req.userId = decoded.id;
 
     // eslint-disable-next-line no-undef
-    console.log(decoded);
+    //console.log(decoded);
 
     return next();
   } catch (err) {
